@@ -25,7 +25,11 @@ def get_db_connection():
     except pymysql.MySQLError as e:
         print(f'Terjadi kesalahan saat menghubungkan ke database: {e}')
         return None
-
+        
+@app.route('/')
+def home():
+    return 'Hello, World!'
+    
 @app.route('/get_answer', methods=['GET'])
 def get_answer():
     try:
@@ -227,6 +231,3 @@ def get_score():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
